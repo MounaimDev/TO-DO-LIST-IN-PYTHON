@@ -1,0 +1,44 @@
+todo_list = []
+
+def add_todo(task):
+    todo_list.append(task)
+    return "Task added successfully"
+
+def view_todo():
+    if not todo_list:
+        return "No tasks found"
+    return "\n".join(todo_list)
+
+def update_todo(task_index, new_task):
+    try:
+        todo_list[task_index] = new_task
+        return "Task updated successfully"
+    except IndexError:
+        return "Invalid task index"
+
+def delete_todo(task_index):
+    try:
+        del todo_list[task_index]
+        return "Task deleted successfully"
+    except IndexError:
+        return "Invalid task index"
+
+
+while True:
+    user_input = input("Enter your command (add, view, update, delete, exit): ")
+    if user_input == "add":
+        task = input("Enter task: ")
+        print(add_todo(task))
+    elif user_input == "view":
+        print(view_todo())
+    elif user_input == "update":
+        task_index = int(input("Enter task index: "))
+        new_task = input("Enter new task: ")
+        print(update_todo(task_index, new_task))
+    elif user_input == "delete":
+        task_index = int(input("Enter task index: "))
+        print(delete_todo(task_index))
+    elif user_input == "exit":
+        break
+    else:
+        print("Invalid command")
